@@ -19,6 +19,14 @@ pip install -r requirments.txt
 python -m spacy download en_core_web_sm
 ```
 
+## Use
+Init a ResumeParser object and call parse function. A main function is in resume_parser.py
+```python
+parser = ResumeParser()
+parser.parse("testing/testing_file/5.pdf")
+```
+
+
 ## Sample Result Output
 Return can either be Resume Object or a Json format string.
 Here is an example for json string:
