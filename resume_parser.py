@@ -209,6 +209,7 @@ class ResumeParser:
 
 if __name__ == "__main__":
     # new init method
-    MODEL_PATH = sys.argv[2] + "/ResumeParser/models/resume_model.pickle"
+    MODEL_NAME = "resume_model.pickle"
+    MODEL_PATH = sys.argv[2] + "/ResumeParser/models/" + MODEL_NAME
     parser = ResumeParser.load(MODEL_PATH)
     print(parser.parse(sys.argv[1]))
