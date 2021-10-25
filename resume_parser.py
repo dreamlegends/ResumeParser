@@ -3,6 +3,7 @@ import os
 import json
 import pandas as pd
 import spacy
+import pickle
 from spacy.matcher import Matcher
 from parsers import email_parser, mobil_parser, address_parser, college_parser, degree_parser, doc_parser, section_parser, name_parser
 
@@ -102,6 +103,25 @@ class ResumeParser:
         titles = list(title_df.Title.values)
         return set(title.upper() for title in titles)
 
+    @staticmethod
+    def save(path):
+        """
+        save a ResumeParser Object
+        """
+        parser = ResumeParser()
+        with open(path, 'wb') as handle:
+            pickle.dump(parser, handle, protocol=pickle.HIGHEST_PROTOCOL)
+        return
+
+    @staticmethod
+    def load(path):
+        """
+        load a ResumeParser Object
+        """
+        with open(path, 'rb') as handle:
+            resume_obj = pickle.load(handle)
+        return resume_obj
+
     def parse(self, resume, return_type="str"):
         """
         :param resume: resume input can be a file location, or bytesIO
@@ -187,5 +207,9 @@ class ResumeParser:
 
 
 if __name__ == "__main__":
-    parser = ResumeParser()
-    print(parser.parse("testing/testing_file/5.pdf"))
+    # parser = ResumeParser()
+    # print(parser.parse("testing/testing_file/5.pdf"))
+
+    # new init method
+    parser = ResumeParser.load('models/resume_model.pickle')
+    print(parser.parse("testing/testing_file/1.pdf"))
