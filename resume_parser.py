@@ -1,3 +1,4 @@
+import sys
 import io
 import os
 import json
@@ -207,9 +208,7 @@ class ResumeParser:
 
 
 if __name__ == "__main__":
-    # parser = ResumeParser()
-    # print(parser.parse("testing/testing_file/5.pdf"))
-
     # new init method
-    parser = ResumeParser.load('models/resume_model.pickle')
-    print(parser.parse("testing/testing_file/1.pdf"))
+    MODEL_PATH = sys.argv[2] + "/ResumeParser/models/resume_model.pickle"
+    parser = ResumeParser.load(MODEL_PATH)
+    print(parser.parse(sys.argv[1]))
